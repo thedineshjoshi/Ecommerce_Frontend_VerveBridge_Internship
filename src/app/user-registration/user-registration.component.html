@@ -1,0 +1,17 @@
+<div class="registration-form">
+    <h2>Register</h2>
+    <form [formGroup]="userRegistrationForm" (ngSubmit)="onSubmit()">
+    <input formControlName="FirstName" type="text" placeholder="First Name" />
+    <input formControlName="LastName" type="text" placeholder="Last Name" />
+    <input formControlName="Email" type="email" placeholder="Email" />
+    <input formControlName="Username" type="Address" placeholder="Username" />
+    <input formControlName="PasswordHash" type="Password" placeholder="Password" />
+    <input type="file" (change)="onFileChange($event)" />
+    <input formControlName="Role" type="text" placeholder="Role" />
+    <input formControlName="Address" type="Address" placeholder="Address" />
+    <input formControlName="PhoneNumber" type="PhoneNumber" placeholder="PhoneNumber" />
+    <input formControlName="BirthDate" type="Address" placeholder="BirthDate" />
+    <button (click)="onSubmit()">Register</button>
+    </form>
+  </div>
+  
