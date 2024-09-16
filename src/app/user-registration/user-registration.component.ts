@@ -22,8 +22,7 @@ export class UserRegistrationComponent {
     PhoneNumber: [''],
     Address: [''],
     BirthDate: [''],
-    Role: [''],
-    ProfileImageUrl: ['']
+    Role: ['']
   });
   selectedFile: File | null = null;
   constructor(private apicallService: ApiCallService, private router: Router, private formBuilder: FormBuilder) {}
@@ -49,9 +48,8 @@ export class UserRegistrationComponent {
   
   
       // Append the selected profile image, if available
-      const profileImage = this.userRegistrationForm.get('ProfileImageUrl')?.value;
-      if (profileImage) {
-        formData.append('ProfileImageUrl', profileImage);
+      if (this.selectedFile) {
+        formData.append('ProfileImageUrl', this.selectedFile);  // Append file here
       }
   
       // Call the API to register the user using your ApiCallService

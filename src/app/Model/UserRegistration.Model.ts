@@ -10,7 +10,6 @@ export class UserRegistration{
     public Address: string="";
     public BirthDate:Date = new Date();
     public Role: string="";
-    public ProfileImageUrl:File | null = null;; 
     public userRegistrationForm:FormGroup;
     constructor()
     {
@@ -24,8 +23,7 @@ export class UserRegistration{
             Email:new FormControl(''),
             PasswordHash:new FormControl(''),
             BirthDate:new FormControl(''),
-            Role:new FormControl(''),
-            ProfileImageUrl:new FormControl('')
+            Role:new FormControl('')
         })
     }
 }

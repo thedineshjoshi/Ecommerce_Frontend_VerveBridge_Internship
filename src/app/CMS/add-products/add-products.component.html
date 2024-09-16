@@ -1,0 +1,46 @@
+<div class="add-product-form">
+    <h2>Add New Product</h2>
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+      <label for="Name">Product Name:</label>
+      <input formControlName="Name" id="Name" type="text" placeholder="Enter product name" />
+  
+      <label for="Description">Description:</label>
+      <textarea formControlName="Description" id="Description" placeholder="Enter product description"></textarea>
+  
+      <label for="Price">Price:</label>
+      <input formControlName="Price" id="Price" type="number" placeholder="Enter product price" />
+  
+      <label for="StockQuantity">Stock Quantity:</label>
+      <input formControlName="StockQuantity" id="StockQuantity" type="number" placeholder="Enter stock quantity" />
+  
+      <label for="SKU">SKU:</label>
+      <input formControlName="SKU" id="SKU" type="text" placeholder="Enter product SKU" />
+  
+      <label for="Weight">Weight (kg):</label>
+      <input formControlName="Weight" id="Weight" type="number" placeholder="Enter product weight" />
+  
+      <label for="Dimensions">Dimensions:</label>
+      <input formControlName="Dimensions" id="Dimensions" type="text" placeholder="Enter product dimensions" />
+  
+      <label for="Category">Category:</label>
+      <input formControlName="Category" id="Category" type="text" placeholder="Enter product category" />
+  
+      <label for="Brand">Brand:</label>
+      <input formControlName="Brand" id="Brand" type="text" placeholder="Enter product brand" />
+  
+      <label for="Discount">Discount:</label>
+      <input formControlName="Discount" id="Discount" type="number" placeholder="Enter discount amount" />
+  
+      <label for="IsFeatured">Featured:</label>
+      <input formControlName="IsFeatured" id="IsFeatured" type="checkbox" />
+  
+      <label for="Tags">Tags (comma-separated):</label>
+      <input formControlName="Tags" id="Tags" type="text" placeholder="Enter product tags" />
+  
+      <label for="ImageUrl">Product Image:</label>
+      <input type="file" (change)="onFileChange($event)" />
+  
+      <button type="submit">Add Product</button>
+    </form>
+  </div>
+  
