@@ -9,4 +9,42 @@
       grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
   }
+  .products {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .product-card {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    width: 250px;
+    text-align: center;
+  }
+  
+  .product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .product-tag {
+    background-color: #007bff;
+    color: white;
+    padding: 3px 8px;
+    margin: 2px;
+    border-radius: 12px;
+  }
+  
+  .discount {
+    color: #dc3545;
+    font-weight: bold;
+  }
+  
+  .featured {
+    color: #28a745;
+    font-weight: bold;
+  }
   

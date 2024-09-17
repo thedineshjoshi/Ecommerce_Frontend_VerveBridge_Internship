@@ -1,16 +1,16 @@
-import { Component } from '@angular/core';
-import { Product } from '../Model/product.model';
-import { ApiCallService } from '../service/api-call.service';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { Product } from '../../Model/product.model';
+import { ApiCallService } from '../../service/api-call.service';
 
 @Component({
-  selector: 'app-product-list',
+  selector: 'app-dashboard',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './product-list.component.html',
-  styleUrl: './product-list.component.css'
+  templateUrl: './dashboard.component.html',
+  styleUrl: './dashboard.component.css'
 })
-export class ProductListComponent {
+export class DashboardComponent {
   recentProducts: Product[] = []; // Array to hold recent products
 
   constructor(private productService: ApiCallService) { }
@@ -25,5 +25,4 @@ export class ProductListComponent {
       this.recentProducts = products;
     });
   }
-
 }

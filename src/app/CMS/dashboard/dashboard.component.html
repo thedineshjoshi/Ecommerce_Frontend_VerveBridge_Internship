@@ -1,0 +1,52 @@
+<div class="container">
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <h2>Dashboard</h2>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Products</a></li>
+        <li><a href="#">Orders</a></li>
+        <li><a href="#">Customers</a></li>
+        <li><a href="#">Analytics</a></li>
+        <li><a href="#">Settings</a></li>
+      </ul>
+    </nav>
+  
+    <!-- Main Content -->
+    <div class="main-content">
+      <header>
+        <h1>Welcome to the Dashboard</h1>
+        <p>Here you can manage your products, orders, and customers.</p>
+      </header>
+  
+      <!-- Recent Products Section -->
+      <section class="dashboard-content">
+        <div class="recent-products">
+          <h2>Recently Added Products</h2>
+          <div class="products">
+            <div *ngFor="let product of recentProducts" class="product-card">
+              <img [src]="product.imageUrl" alt="Product Image">
+              <h3>{{ product.name }}</h3>
+              <p><strong>Price:</strong> {{ product.price | currency }}</p>
+              <p><strong>Stock:</strong> {{ product.stockQuantity }}</p>
+              <p><strong>Category:</strong> {{ product.category }}</p>
+              <p><strong>Brand:</strong> {{ product.brand }}</p>
+  
+              <div *ngIf="product.discount > 0">
+                <p class="discount">Discount: {{ product.discount }}%</p>
+              </div>
+  
+              <div *ngIf="product.isFeatured">
+                <p class="featured">Featured Product</p>
+              </div>
+  
+              <p><strong>Tags:</strong> 
+                <span *ngFor="let tag of product.tags" class="product-tag">{{ tag }}</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  

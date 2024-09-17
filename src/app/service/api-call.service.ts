@@ -9,6 +9,7 @@ import { UserRegistration } from '../Model/UserRegistration.Model';
 export class ApiCallService {
   private userRegistrationApiUrl = 'https://localhost:7212/api/UserRegistration'; // Blog API URL
   private productApiUrl='https://localhost:7212/api/Product';
+  private loginUrl = 'https://localhost:7212/api/Login';
   private headers = new HttpHeaders({
      'Content-Type': 'application/json',
    });
@@ -22,5 +23,11 @@ export class ApiCallService {
   addProduct(product: FormData): Observable<any> {
     return this.http.post(this.productApiUrl, product,{responseType:'json'});
   }
-  
+  getRecentProducts(): Observable<any> {
+    return this.http.get<any>(`${this.productApiUrl}/recent`); // Fetch recent products
+  }
+  login():Observable<any>
+  {
+    return this.http.post<any>(this.loginUrl,{responseType:'json'});
+  }
 }
