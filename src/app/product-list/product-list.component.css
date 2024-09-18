@@ -1,50 +1,81 @@
-.product-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 15px;
-  }
-  
-  @media (max-width: 768px) {
-    .product-list {
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    }
-  }
-  .products {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-  
+/* General styles for product list */
+.productlist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.products {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Product card styles */
+.product-card {
+  width: 200px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  transition: transform 0.2s ease-in-out;
+}
+
+.product-card:hover {
+  transform: scale(1.05);
+}
+
+/* Image styles */
+.product-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border-radius: 4px;
+}
+
+/* Product name styles */
+.product-name {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 10px 0;
+  color: #333;
+}
+
+/* Price and discount styles */
+.product-price {
+  font-size: 18px;
+  color: #ff5722;
+  margin-bottom: 5px;
+}
+
+.product-discount {
+  font-size: 14px;
+  color: #388e3c;
+  background-color: #e8f5e9;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+
+/* Rating styles */
+.product-rating {
+  font-size: 14px;
+  color: #ff9800;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
   .product-card {
-    background-color: #f8f9fa;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 15px;
-    width: 250px;
-    text-align: center;
+    width: 150px;
   }
-  
-  .product-card img {
+}
+
+@media (max-width: 480px) {
+  .product-card {
     width: 100%;
-    height: auto;
-    border-radius: 8px;
   }
-  
-  .product-tag {
-    background-color: #007bff;
-    color: white;
-    padding: 3px 8px;
-    margin: 2px;
-    border-radius: 12px;
-  }
-  
-  .discount {
-    color: #dc3545;
-    font-weight: bold;
-  }
-  
-  .featured {
-    color: #28a745;
-    font-weight: bold;
-  }
-  
+}

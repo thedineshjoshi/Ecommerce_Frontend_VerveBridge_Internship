@@ -24,9 +24,9 @@ export class AuthService {
       const token = window.localStorage.getItem('token');
       if(token!=null)
       {
-      this.jwtPayload = this.decodeJwt(token);
-    }
-    return this.jwtPayload;
+        this.jwtPayload = this.decodeJwt(token);
+      }
+      return this.jwtPayload;
     }
 
      decodeJwt(token: string): any {
@@ -63,10 +63,43 @@ export class AuthService {
       return false;
     }
   }
-
   logout(){
     const window = this.windowRef.nativeWindow;
     window.localStorage.clear();
     this._route.navigateByUrl("");
+  }
+
+   // New: Get the current user's role from the JWT token
+   getUserRole(): string | null {
+    const token = window.localStorage.getItem('token');
+    if (token) {
+      const decodedToken = this.decodeJwt(token);
+      return decodedToken.Role || null;  // Assuming the JWT contains a 'role' field
+    }
+    return null;
+  }
+
+  // New: Check if the user is an Admin
+  isAdmin(): boolean {
+    const role = this.getUserRole();
+    return role === 'Admin';
+  }
+
+  // New: Check if the user is a Customer
+  isCustomer(): boolean {
+    const role = this.getUserRole();
+    return role === 'Customer';
+  }
+
+  // New: Check if the user is a basic User
+  isUser(): boolean {
+    const role = this.getUserRole();
+    return role === 'User';
+  }
+
+  // New: Check if the user is authenticated (has a valid, non-expired token)
+  isAuthenticated(): boolean {
+    const token = window.localStorage.getItem('token');
+    return token != null && !this.isTokenExpired();
   }
 }
