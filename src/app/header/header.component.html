@@ -8,13 +8,14 @@
         <li><a href="#">Categories</a></li>
         <li><a href="#">Deals</a></li>
         <li><a href="#">Contact</a></li>
+        <li *ngIf="!isLoggedIn"><a routerLink="/login" class="login-button">Login</a></li>
+        <li *ngIf="isLoggedIn"><a (click)="logout()" class="login-button">Logout</a></li>
       </ul>
     </nav>
     <div class="search-cart-profile">
       <input type="text" placeholder="Search products">
-      <a href="#" class="cart">Cart</a>
+      <a routerLink="/carts" class="cart">Cart</a>
       <a href="#" class="profile">Profile</a>
-      <a routerLink="/login" class="login-button">Login</a>
     </div>
   </header>
   

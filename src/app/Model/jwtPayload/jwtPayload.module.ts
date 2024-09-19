@@ -5,4 +5,5 @@ export class JwtPayload{
   email:string="";
   exp:number = 0;
   Role:string="";
+  UserId:string="";
 }

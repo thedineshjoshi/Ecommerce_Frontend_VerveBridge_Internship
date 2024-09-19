@@ -6,6 +6,7 @@ export class UserRegistration{
     public Email: string="";
     public Username:string ="";
     public Password: string="";
+    public ProfileImageUrl:string = "";
     public PhoneNumber: string="";
     public Address: string="";
     public BirthDate:Date = new Date();
@@ -23,7 +24,8 @@ export class UserRegistration{
             Email:new FormControl(''),
             PasswordHash:new FormControl(''),
             BirthDate:new FormControl(''),
-            Role:new FormControl('')
+            Role:new FormControl(''),
+            ProfileImageUrl: new FormControl('')
         })
     }
 }

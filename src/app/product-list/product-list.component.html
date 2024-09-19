@@ -1,13 +1,16 @@
 <h3 class="product-name">Just For You</h3>
 <div class="productlist">
   <div class="products">
-    <div *ngFor="let product of recentProducts" class="product-card">
-      <img [src]="product.imageUrl" alt="Product Image" class="product-image">
-      <h3 class="product-name">{{ product.name }}</h3>
-      <p class="product-price">{{ product.price | currency }}</p>
-      <div class="product-discount" *ngIf="product.discount > 0">
-        <span>{{ product.discount }}% OFF</span>
+    <div *ngFor="let productItem of recentProducts" class="product-card">
+      <img [src]="productItem.imageUrl" alt="Product Image" class="product-image">
+      <h3 class="product-name">{{ productItem.name }}</h3>
+      <p class="product-price">{{ productItem.price | currency }}</p>
+      <div class="product-discount" *ngIf="productItem.discount > 0">
+        <span>{{ productItem.discount }}% OFF</span>
       </div>
+      <label for="quantity">Quantity:</label>
+  <input type="number" [(ngModel)]="quantity" min="1" />
+      <button (click)="addToCart(productItem.id, quantity)" class="add-to-cart-btn">Add to Cart</button>
     </div>
   </div>
 </div>

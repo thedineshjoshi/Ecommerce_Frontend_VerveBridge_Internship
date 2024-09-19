@@ -1,22 +1,27 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { catchError, map, Observable, throwError } from 'rxjs';
+import { catchError, map, Observable, tap, throwError } from 'rxjs';
 import { UserRegistration } from '../Model/UserRegistration.Model';
+import { Cart } from '../Model/Cart.Model';
+import { Product } from '../Model/product.model';
+import { CartItem } from '../Model/CartItem.Model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiCallService {
+  private cart: any[] = [];
   private userRegistrationApiUrl = 'https://localhost:7212/api/UserRegistration'; // Blog API URL
   private productApiUrl='https://localhost:7212/api/Product';
-  private loginUrl = 'https://localhost:7212/api/Login';
- 
+  private cartApiUrl='https://localhost:7212/api/Cart';
+
   constructor(private http: HttpClient) {}
-  //UserApis
+
   addUser(formData:FormData):Observable<any>
   {
-    return this.http.post<any>(`${this.userRegistrationApiUrl}/Register`,formData,{responseType:'json'});
+    return this.http.post(`${this.userRegistrationApiUrl}/Register`,formData);
   }
+
   addProduct(product: FormData): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
@@ -24,11 +29,30 @@ export class ApiCallService {
     });
     return this.http.post(this.productApiUrl, product,{ headers });
   }
+
   getRecentProducts(): Observable<any> {
     return this.http.get<any>(`${this.productApiUrl}/recent`); // Fetch recent products
   }
-  login():Observable<any>
-  {
-    return this.http.post<any>(this.loginUrl,{responseType:'json'});
+  getProduct(productId: string): Observable<any> {
+    return this.http.get<any>(`${this.productApiUrl}/${productId}`);
+  }
+
+  getCart(userId: string): Observable<Cart> {
+    return this.http.get<Cart>(`${this.cartApiUrl}/${userId}`);
+  }
+
+  getCartItems(userId: string): Observable<CartItem[]> {
+    return this.http.get<CartItem[]>(`${this.cartApiUrl}/${userId}`);
+  }
+  addToCart(userId: string, productId: string, quantity: number): Observable<Cart> {
+    return this.http.post<Cart>(`${this.cartApiUrl}/${userId}/cart/${productId}?quantity=${quantity}`, { userId, productId, quantity });
+  }
+
+  removeFromCart(userId: string, productId: string): Observable<Cart> {
+    return this.http.delete<Cart>(`${this.cartApiUrl}/RemoveProduct?userId=${userId}&productId=${productId}`);
+  }
+
+  updateCartItem(userId: string, productId: string, quantity: number): Observable<Cart> {
+    return this.http.put<Cart>(`${this.cartApiUrl}/update`, { userId, productId, quantity });
   }
 }

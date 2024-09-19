@@ -22,8 +22,18 @@ export class DashboardComponent {
 
   // Fetch recent products from the backend
   fetchRecentProducts(): void {
-    this.productService.getRecentProducts().subscribe((products: Product[]) => {
-      this.recentProducts = products;
+    this.productService.getRecentProducts().subscribe({
+      next: (products: Product[]) => {
+        if (Array.isArray(products)) {
+          this.recentProducts = products;
+        } else {
+          this.recentProducts = [];
+        }
+      },
+      error: (error) => {
+        console.error('Error fetching recent products:', error);
+      }
     });
   }
+  
 }

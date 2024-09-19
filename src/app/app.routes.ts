@@ -8,12 +8,15 @@ import { RoleGuard } from './service/auth-role.guard';
 import { CartComponent } from './CMS/cart/cart.component';
 import { CheckoutComponent } from './CMS/checkout/checkout.component';
 import { UnauthorizedComponent } from './CMS/unauthorized/unauthorized.component';
+import { CartsComponent } from './carts/carts.component';
+
 
 export const routes: Routes = [
     { path: '',redirectTo:'/home',pathMatch:'full' },
     {path:'home',component:HomeComponent},
     {path: 'login', component: LoginComponent},
     {path:'userregister',component:UserRegistrationComponent},
+    { path: 'carts', component: CartsComponent },
     { path: 'admin/products', component: AddProductsComponent, canActivate: [RoleGuard], data: { expectedRole: 'Admin' } },
     {path:'dashboard',component:DashboardComponent},
     { path: 'customer/cart', component: CartComponent, canActivate: [RoleGuard], data: { expectedRole: 'Customer' } },

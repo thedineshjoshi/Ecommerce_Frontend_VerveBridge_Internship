@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './user-registration.component.css'
 })
 export class UserRegistrationComponent {
+  isSubmitting = false;
   userRegistrationForm = this.formBuilder.group({
     FirstName: [''],
     LastName: [''],
@@ -26,13 +27,16 @@ export class UserRegistrationComponent {
   });
   selectedFile: File | null = null;
   constructor(private apicallService: ApiCallService, private router: Router, private formBuilder: FormBuilder) {}
-    onFileChange(event: any) {
-      const file = event.target.files[0];
-      if (file) {
-        this.selectedFile = file;
-      }
+  onFileChange(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
     }
+  }
+
   onSubmit() {
+    if (this.isSubmitting) return; // Prevent multiple submissions
+    this.isSubmitting = true;
       const formData = new FormData();
   
       // Append all form fields to the FormData object
@@ -49,7 +53,7 @@ export class UserRegistrationComponent {
   
       // Append the selected profile image, if available
       if (this.selectedFile) {
-        formData.append('ProfileImageUrl', this.selectedFile);  // Append file here
+        formData.append('ProfileImageUrl', this.selectedFile, this.selectedFile.name);  // Append file here
       }
   
       // Call the API to register the user using your ApiCallService
@@ -57,10 +61,12 @@ export class UserRegistrationComponent {
         (res) => {
           alert("Registered Successfully");
           this.router.navigateByUrl(""); // Redirect after successful registration
+          this.isSubmitting = false; // Reset flag
         },
         (err) => {
           console.error("Error during registration:", err);
           alert("An error occurred while registering the user. Please try again.");
+          this.isSubmitting = false; // Reset flag
         }
       );
     }
