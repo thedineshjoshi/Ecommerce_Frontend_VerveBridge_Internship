@@ -19,6 +19,7 @@ export class ProductListComponent implements OnInit{
   product: Product| undefined;;
   recentProducts: Product[] = [];
   quantity: number = 1;
+  showMessage: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -44,6 +45,12 @@ export class ProductListComponent implements OnInit{
       .subscribe(
         response => {
           console.log('Product added to cart:', response);
+          this.showMessage = true;
+
+          // Hide the message after 10 seconds
+          setTimeout(() => {
+          this.showMessage = false;
+            }, 5000); // 10 seconds
         },
         error => {
           console.error('Error adding to cart:', error);

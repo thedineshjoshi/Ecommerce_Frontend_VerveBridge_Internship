@@ -19,6 +19,7 @@ header {
   /* Add hover effect to the Login button */
   .login-button:hover {
     background-color: #e65c00;
+    cursor:pointer;
   }
   
   

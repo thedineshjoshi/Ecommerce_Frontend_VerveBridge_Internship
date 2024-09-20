@@ -26,7 +26,7 @@ export class LoginComponent {
          window.localStorage.setItem("token",token);
          this._authService.decodeToken();
          alert("Logged In Successfully");
-         this.router.navigateByUrl("/dashboard");
+         this.router.navigateByUrl("");
        }
      },
      err=>{

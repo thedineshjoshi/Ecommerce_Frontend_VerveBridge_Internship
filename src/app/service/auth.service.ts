@@ -28,7 +28,6 @@ export class AuthService {
       }
       return this.jwtPayload;
     }
-
      decodeJwt(token: string): any {
      
       const payload = token.split('.')[1];

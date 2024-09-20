@@ -5,6 +5,7 @@ import { UserRegistration } from '../Model/UserRegistration.Model';
 import { Cart } from '../Model/Cart.Model';
 import { Product } from '../Model/product.model';
 import { CartItem } from '../Model/CartItem.Model';
+import { CustomerDto } from '../Model/Customer.Dto';
 
 @Injectable({
   providedIn: 'root'
@@ -52,7 +53,22 @@ export class ApiCallService {
     return this.http.delete<Cart>(`${this.cartApiUrl}/RemoveProduct?userId=${userId}&productId=${productId}`);
   }
 
-  updateCartItem(userId: string, productId: string, quantity: number): Observable<Cart> {
-    return this.http.put<Cart>(`${this.cartApiUrl}/update`, { userId, productId, quantity });
+  updateCartItem(userId: string, productId: string, quantity: number): Observable<any> {
+    return this.http.put<any>(`${this.cartApiUrl}/${userId}/cart/${productId}`, null, {
+      params: { quantity: quantity.toString() }
+    });
+  }
+
+  getCustomers(): Observable<CustomerDto[]> {
+    return this.http.get<CustomerDto[]>(`${this.userRegistrationApiUrl}/Customers`);
+  }
+
+  // Delete a user
+  deleteUser(userId: string): Observable<any> {
+    return this.http.delete(`${this.userRegistrationApiUrl}/${userId}`, {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${localStorage.getItem('token')}` // If using JWT tokens
+      })
+    });
   }
 }

@@ -1,0 +1,41 @@
+<nav class="navbar">
+    <div class="navbar-container">
+      <h2 class="navbar-brand">Manage Customer</h2>
+      <ul class="navbar-links">
+        <li><a routerLink="/dashboard" class="nav-link">Home</a></li>
+        <li><a routerLink="/admin/products" class="nav-link">Products</a></li>
+        <li><a href="#" class="nav-link">Orders</a></li>
+        <li><a routerLink="/managecustomer" class="nav-link">Customers</a></li>
+        <li><a href="#" class="nav-link">Analytics</a></li>
+        <li><a href="#" class="nav-link">Settings</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="customer-management">
+    <h1>Manage Customers</h1>
+    <table class="customer-table">
+      <thead>
+        <tr>
+          <th>S.N.</th>
+          <th>Name</th>
+          <th>UserId</th>
+          <th>Email Address</th>
+          <th>Total Products in Cart</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let customer of customers; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ customer.firstName }} {{ customer.lastName }}</td>
+          <td>{{ customer.id }}</td>
+          <td>{{ customer.email }}</td>
+          <td>{{ customer.totalProductsInCart }}</td>
+          <td>
+            <button (click)="deleteUser(customer.id)" class="delete-btn">Remove</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

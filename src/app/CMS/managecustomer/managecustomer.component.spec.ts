@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BannerSectionComponent } from './banner-section.component';
+import { ManagecustomerComponent } from './managecustomer.component';
 
-describe('BannerSectionComponent', () => {
-  let component: BannerSectionComponent;
-  let fixture: ComponentFixture<BannerSectionComponent>;
+describe('ManagecustomerComponent', () => {
+  let component: ManagecustomerComponent;
+  let fixture: ComponentFixture<ManagecustomerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BannerSectionComponent]
+      imports: [ManagecustomerComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(BannerSectionComponent);
+    fixture = TestBed.createComponent(ManagecustomerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

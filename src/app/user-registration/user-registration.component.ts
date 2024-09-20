@@ -4,6 +4,7 @@ import { UserRegistration } from '../Model/UserRegistration.Model';
 import { Router } from '@angular/router';
 import { ApiCallService } from '../service/api-call.service';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-user-registration',
@@ -26,7 +27,24 @@ export class UserRegistrationComponent {
     Role: ['']
   });
   selectedFile: File | null = null;
-  constructor(private apicallService: ApiCallService, private router: Router, private formBuilder: FormBuilder) {}
+  roles: string[] = ['Customer']; // Default role list with only 'Customer'
+  userRole: string | null = null;
+  constructor(private authService:AuthService,private apicallService: ApiCallService, private router: Router, private formBuilder: FormBuilder) {}
+  ngOnInit() {
+    const token = localStorage.getItem('token');
+    if(token)
+    {
+      const userRole = this.authService.decodeToken()['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+      if(userRole === 'Admin')
+      {
+        this.roles = ['Admin', 'Customer', 'User'];
+      }
+    }
+  }
+    
+
+
+  
   onFileChange(event: any) {
     const file = event.target.files[0];
     if (file) {

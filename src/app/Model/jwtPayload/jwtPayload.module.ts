@@ -4,6 +4,6 @@ export class JwtPayload{
   Username:string="";
   email:string="";
   exp:number = 0;
-  Role:string="";
+  "http://schemas.microsoft.com/ws/2008/06/identity/claims/role":string="";
   UserId:string="";
 }

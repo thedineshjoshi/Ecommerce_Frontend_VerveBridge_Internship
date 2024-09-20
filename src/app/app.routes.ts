@@ -9,6 +9,7 @@ import { CartComponent } from './CMS/cart/cart.component';
 import { CheckoutComponent } from './CMS/checkout/checkout.component';
 import { UnauthorizedComponent } from './CMS/unauthorized/unauthorized.component';
 import { CartsComponent } from './carts/carts.component';
+import { ManagecustomerComponent } from './CMS/managecustomer/managecustomer.component';
 
 
 export const routes: Routes = [
@@ -17,10 +18,11 @@ export const routes: Routes = [
     {path: 'login', component: LoginComponent},
     {path:'userregister',component:UserRegistrationComponent},
     { path: 'carts', component: CartsComponent },
-    { path: 'admin/products', component: AddProductsComponent, canActivate: [RoleGuard], data: { expectedRole: 'Admin' } },
-    {path:'dashboard',component:DashboardComponent},
+    { path: 'admin/products', component: AddProductsComponent },
+    {path:'dashboard',component:DashboardComponent, canActivate: [RoleGuard], data: { expectedRole: 'Admin' }},
+    {path:'managecustomer',component:ManagecustomerComponent, canActivate: [RoleGuard], data: { expectedRole: 'Admin' }},
     { path: 'customer/cart', component: CartComponent, canActivate: [RoleGuard], data: { expectedRole: 'Customer' } },
-  { path: 'checkout', component: CheckoutComponent, canActivate: [RoleGuard], data: { expectedRole: 'Customer' } },
-  { path: 'user/cart', component: CartComponent, canActivate: [RoleGuard], data: { expectedRole: 'User' } },
-  { path: 'unauthorized', component: UnauthorizedComponent },  // Handle unauthorized access
+    { path: 'checkout', component: CheckoutComponent, canActivate: [RoleGuard], data: { expectedRole: 'Customer' } },
+    { path: 'user/cart', component: CartComponent, canActivate: [RoleGuard], data: { expectedRole: 'User' } },
+    { path: 'unauthorized', component: UnauthorizedComponent },  // Handle unauthorized access
 ];

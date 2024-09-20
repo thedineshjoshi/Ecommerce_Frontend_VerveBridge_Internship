@@ -7,11 +7,15 @@
     <input formControlName="Username" type="Address" placeholder="Username" />
     <input formControlName="PasswordHash" type="Password" placeholder="Password" />
     <input type="file" (change)="onFileChange($event)" />
-    <input formControlName="Role" type="text" placeholder="Role" />
+    <div class="form-group">
+      <select formControlName="Role">
+        <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+      </select>
+    </div>
     <input formControlName="Address" type="Address" placeholder="Address" />
     <input formControlName="PhoneNumber" type="PhoneNumber" placeholder="PhoneNumber" />
     <input formControlName="BirthDate" type="date" placeholder="BirthDate" />
-    <button (click)="onSubmit()">Register</button>
+    <button (click)="onSubmit()" [disabled]="isSubmitting">Register</button>
     </form>
   </div>
   

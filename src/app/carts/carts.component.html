@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="cart-container">
   <h1>Your Cart</h1>
   <div *ngIf="cartItems.length > 0; else emptyCart">
@@ -5,21 +6,23 @@
       <img [src]="item.imageUrl" alt="Image Url" class="product-image">
       <div class="item-details">
         <h2>{{item.productName}}</h2>
-        <p>{{item.productId}}</p>
+        <p>Product ID: {{item.productId}}</p>
         <p class="price">Price: ${{item.unitPrice}}</p>
+
         <div class="quantity-controls">
-          <button (click)="updateQuantity(item.productId, item.quantity - 1)">-</button>
-          <span>{{item.quantity}}</span>
+          <button (click)="updateQuantity(item.productId, item.quantity - 1)" [disabled]="item.quantity <= 1">-</button>
+          <input type="number" [(ngModel)]="item.quantity" (change)="onQuantityChange(item)" class="quantity-input"/>
           <button (click)="updateQuantity(item.productId, item.quantity + 1)">+</button>
         </div>
-        <p class="subtotal">Subtotal: ${{item.totalPrice}}</p>
+
+        <p class="subtotal">Subtotal: ${{item.unitPrice * item.quantity}}</p>
         <button (click)="removeItem(item.productId)" class="remove-btn">Remove</button>
       </div>
     </div>
 
     <div class="cart-summary">
-      <h3>Total Price: ${{totalPrice}}</h3>
-      <button class="checkout-btn">Proceed to Checkout</button>
+      <h3>Total Price: ${{calculateTotalPrice()}}</h3>
+      <button (click)="checkout()" class="checkout-btn" [disabled]="cartItems.length === 0">Proceed to Checkout</button>
     </div>
   </div>
 
