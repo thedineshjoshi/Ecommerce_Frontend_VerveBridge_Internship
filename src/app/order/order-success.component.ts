@@ -1,0 +1,76 @@
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-order-success',
+  template: `
+    <div class="order-success-container">
+      <h2>Order Placed Successfully!</h2>
+      <p>Your order has been placed. Thank you for shopping with us!</p>
+      <button routerLink="/" class="btn btn-primary">Go to Home</button>
+    </div>
+    <style>
+        .order-success-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh; /* Adjusts the height to center vertically */
+  text-align: center;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  font-size: 2rem;
+  color: #28a745; /* Green color for success message */
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.btn {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+.btn-primary {
+  margin-top: 20px;
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+    </style>
+  `,
+})
+export class OrderSuccessComponent {}

@@ -1,0 +1,15 @@
+<app-header></app-header>
+<div class="profile-container" *ngIf="user">
+    <h1>User Profile</h1>
+    <img *ngIf="user.profileImageUrl" [src]="user.profileImageUrl" alt="Profile Image" class="profile-image">
+    <p><strong>Name:</strong> {{ user.firstName }} {{ user.lastName }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Phone:</strong> {{ user.phoneNumber }}</p>
+    <p><strong>Address:</strong> {{ user.address }}</p>
+    <p><strong>Date of Birth:</strong> {{ user.dateOfBirth }}</p>
+    <p><strong>Role:</strong> {{ user.role }}</p>
+    <p><strong>Verified:</strong> {{ user.isVerified ? 'Yes' : 'No' }}</p>
+    <p><strong>Created At:</strong> {{ user.createdAt }}</p>
+    <p><strong>Updated At:</strong> {{ user.updatedAt }}</p>
+  </div>
+  

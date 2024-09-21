@@ -13,7 +13,7 @@
     <div class="search-cart-profile">
       <input type="text" placeholder="Search products">
       <a routerLink="/carts" class="cart">Cart</a>
-      <a href="#" class="profile">Profile</a>
+      <a routerLink="/profile" class="profile">Profile</a>
       <li *ngIf="isLoggedIn"><a (click)="logout()" class="login-button">Logout</a></li>
     </div>
   </header>

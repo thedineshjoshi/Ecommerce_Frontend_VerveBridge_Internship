@@ -6,6 +6,8 @@ import { Cart } from '../Model/Cart.Model';
 import { Product } from '../Model/product.model';
 import { CartItem } from '../Model/CartItem.Model';
 import { CustomerDto } from '../Model/Customer.Dto';
+import { User } from '../Model/User.Model';
+import { Order } from '../Model/order.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +17,7 @@ export class ApiCallService {
   private userRegistrationApiUrl = 'https://localhost:7212/api/UserRegistration'; // Blog API URL
   private productApiUrl='https://localhost:7212/api/Product';
   private cartApiUrl='https://localhost:7212/api/Cart';
+  private checkoutApiUrl='https://localhost:7212/api/Order';
 
   constructor(private http: HttpClient) {}
 
@@ -70,5 +73,13 @@ export class ApiCallService {
         'Authorization': `Bearer ${localStorage.getItem('token')}` // If using JWT tokens
       })
     });
+  }
+
+  getUserProfile(userId: string): Observable<User> {
+    return this.http.get<User>(`${this.userRegistrationApiUrl}/Profile/${userId}`);
+  }
+
+  checkout(orderData: any): Observable<Order> {
+    return this.http.post<Order>(`${this.checkoutApiUrl}/Checkout`, orderData);
   }
 }

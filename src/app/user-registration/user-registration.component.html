@@ -8,7 +8,7 @@
     <input formControlName="PasswordHash" type="Password" placeholder="Password" />
     <input type="file" (change)="onFileChange($event)" />
     <div class="form-group">
-      <select formControlName="Role">
+      <select formControlName="Role" >
         <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
       </select>
     </div>

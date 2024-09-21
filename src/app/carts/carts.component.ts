@@ -7,11 +7,12 @@ import { CartItem } from '../Model/CartItem.Model';
 import { AuthService } from '../service/auth.service';
 import { HeaderComponent } from '../header/header.component';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-carts',
   standalone: true,
-  imports: [CommonModule,HeaderComponent,FormsModule],
+  imports: [CommonModule,HeaderComponent,FormsModule,RouterLink],
   templateUrl: './carts.component.html',
   styleUrl: './carts.component.css'
 })
