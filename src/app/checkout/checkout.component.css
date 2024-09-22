@@ -35,4 +35,47 @@
   .btn-primary:hover {
     background-color: #0056b3;
   }
+  .success-message {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #27ae60;
+    color: #fff;
+    padding: 15px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(50px);
+    animation: showMessage 0.5s ease-in-out forwards, hideMessage 0.5s ease-in-out 9.5s forwards;
+    z-index: 1000;
+  }
+  
+  /* Keyframes for showing and hiding the message */
+  @keyframes showMessage {
+    0% {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+  }
+  
+  @keyframes hideMessage {
+    0% {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(50px);
+    }
+  }
   

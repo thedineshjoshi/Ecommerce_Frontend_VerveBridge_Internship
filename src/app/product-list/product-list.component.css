@@ -1,130 +1,111 @@
-/* Product List Header */
-h3.product-name {
-  text-align: center;
-  font-size: 2rem;
-  margin: 20px 0;
-  color: #333;
-}
-
-/* Product List Container */
+/* General Styles */
 .productlist {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
   padding: 20px;
-  background-color: #fff;
+  background-color: #f9f9f9;
 }
 
-.products {
+/* Grid Container for Horizontal Layout */
+.products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Adjusts number of products per row based on screen size */
   gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
 }
 
-/* Individual Product Card */
+/* Product Card */
 .product-card {
-  background-color: #fff;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto auto auto auto auto 1fr auto;
+  gap: 10px;
   position: relative;
-  justify-content: space-between;
-}
-/* Category Styling */
-.category {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: #ffcc00; /* Highlighting color */
-  color: #fff;
-  padding: 5px 10px;
-  font-size: 0.9rem;
-  font-weight: bold;
-  position: relative;
-  border-radius: 5px;
-  text-transform: uppercase;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease-in-out;
 }
 
 .product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
 }
 
 /* Product Image */
 .product-image {
-  max-width: 100%;
-  height: auto;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
   border-radius: 8px;
-  margin-bottom: 10px;
 }
 
-/* Product Name */
+/* Title, Price, Discount, and Quantity Alignment */
 .product-name {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: #333;
-  margin: 10px 0;
   text-align: center;
 }
 
-/* Product Category */
-.product-card h3:last-child {
-  font-size: 1rem;
-  color: #777;
-  text-align: center;
-}
-
-/* Product Price */
-.product-price {
-  font-size: 1.25rem;
+.category {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: #f39c12;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.9rem;
   font-weight: bold;
+}
+
+.product-price {
+  font-size: 1.4rem;
   color: #27ae60;
   text-align: center;
-  margin-bottom: 10px;
 }
 
-/* Product Discount */
 .product-discount {
-  background-color: #ff6b6b;
-  color: #fff;
   text-align: center;
-  padding: 5px;
-  border-radius: 5px;
-  font-size: 0.875rem;
-  margin-bottom: 10px;
+  color: #e74c3c;
+  font-weight: bold;
 }
 
-/* Quantity Input */
-input[type="number"] {
-  width: 60px;
+.quantity-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.quantity-input {
+  width: 50px;
   padding: 5px;
-  border-radius: 5px;
+  margin-left: 10px;
   border: 1px solid #ddd;
-  margin-bottom: 10px;
+  border-radius: 5px;
 }
 
 /* Add to Cart Button */
+/* Add to Cart Button */
 .add-to-cart-btn {
-  background-color: #27ae60;
+  background-color: #007bff;
   color: white;
   border: none;
-  padding: 10px 15px;
+  padding: 10px 20px;  /* Adjusted padding to make the button compact */
   border-radius: 5px;
   font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  width: 100%;
+  transition: background-color 0.3s;
+  text-align: center;
+  width: auto;  /* Set width to auto to avoid full width buttons */
+  margin: 10px auto;  /* Center align button */
+  display: block;  /* Ensure it takes only the necessary width */
+  height:60px
 }
 
 .add-to-cart-btn:hover {
-  background-color: #2ecc71;
+  background-color: #0056b3;
 }
 
+
+/* Success Message */
 .success-message {
   position: fixed;
   bottom: 20px;
@@ -169,23 +150,10 @@ input[type="number"] {
   }
 }
 
+
 /* Responsive Design */
-@media only screen and (max-width: 600px) {
-  .product-card {
-      padding: 10px;
-  }
-
-  .product-name {
-      font-size: 1.25rem;
-  }
-
-  .product-price {
-      font-size: 1rem;
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  .products {
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+@media (max-width: 768px) {
+  .products-grid {
+    grid-template-columns: 1fr; /* Stack products vertically on smaller screens */
   }
 }

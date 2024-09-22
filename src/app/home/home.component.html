@@ -1,4 +1,4 @@
 <app-header></app-header>  <!-- Header Component -->
-<app-category></app-category>  <!-- Category Menu Component -->
-<app-product-list></app-product-list>  <!-- Product List/Grid Component -->
+<app-category (categorySelected)="onCategorySelected($event)"></app-category>
+<app-product-list #productList></app-product-list>
 <app-footer></app-footer>  <!-- Footer Component -->

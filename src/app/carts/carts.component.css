@@ -1,124 +1,180 @@
+/* General Cart Container */
 .cart-container {
+  display: flex;
+  flex-direction: column;
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  font-family: 'Arial', sans-serif;
 }
 
-h1 {
-  text-align: center;
-  margin-bottom: 30px;
-  color: #333;
+.cart-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.cart-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* Cart Items Section */
+.cart-items-section {
+  flex: 2;
+  margin-right: 20px;
 }
 
 .cart-item {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 20px;
   margin-bottom: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  border-bottom: 1px solid #eaeaea;
 }
 
 .product-image {
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: auto;
   object-fit: cover;
-  border-radius: 10px;
+  margin-right: 20px;
 }
 
 .item-details {
-  flex: 1;
-  margin-left: 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.item-details h2 {
-  font-size: 24px;
+.product-name {
+  font-size: 1.2rem;
   margin-bottom: 10px;
 }
 
-.item-details p {
-  margin: 5px 0;
+.item-color, .item-size, .in-stock {
+  font-size: 0.9rem;
   color: #555;
+  margin-bottom: 5px;
 }
 
-.price, .subtotal {
-  font-size: 18px;
+.price, .total-price {
   font-weight: bold;
+  margin-top: 10px;
 }
 
 .quantity-controls {
   display: flex;
   align-items: center;
-  margin: 10px 0;
+  margin-top: 10px;
 }
 
 .quantity-controls button {
-  background-color: #007bff;
-  color: white;
-  border: none;
   padding: 5px 10px;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.quantity-controls button:hover {
-  background-color: #0056b3;
-}
-
-.quantity-controls span {
-  padding: 0 10px;
-  font-size: 16px;
-}
-
-.remove-btn {
-  background-color: #dc3545;
-  color: white;
-  padding: 8px 15px;
+  font-size: 1rem;
+  background-color: #ddd;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
 }
 
-.remove-btn:hover {
-  background-color: #c82333;
+.quantity-input {
+  width: 50px;
+  margin: 0 10px;
+  text-align: center;
 }
 
-.cart-summary {
-  margin-top: 30px;
-  text-align: right;
+.item-actions {
+  margin-top: 10px;
+}
+
+.item-actions .action-link {
+  color: #007bff;
+  background: none;
+  border: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.item-actions .action-link:hover {
+  text-decoration: underline;
+}
+
+/* Cart Summary Section */
+.cart-summary-section {
+  flex: 1;
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 5px;
+  border: 1px solid #eaeaea;
+}
+
+.cart-summary-section h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.promo-code {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.promo-code input {
+  flex-grow: 1;
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.promo-code .submit-btn {
+  padding: 10px 20px;
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.pricing-details p {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  margin: 10px 0;
+}
+
+.estimated-total {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #e74c3c;
 }
 
 .checkout-btn {
-  background-color: #28a745;
-  color: white;
-  padding: 10px 20px;
+  width: 100%;
+  padding: 15px;
+  background-color: #ffc107;
   border: none;
-  border-radius: 5px;
+  font-size: 1.2rem;
+  font-weight: bold;
   cursor: pointer;
-  font-size: 18px;
 }
 
-.checkout-btn:hover {
-  background-color: #218838;
+.checkout-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
 
+/* Responsive Design */
 @media (max-width: 768px) {
-  .cart-item {
+  .cart-content {
     flex-direction: column;
-    align-items: flex-start;
   }
 
-  .product-image {
-    width: 100%;
-    height: auto;
+  .cart-summary-section {
+    margin-top: 20px;
   }
 
-  .item-details {
-    margin-left: 0;
-    margin-top: 15px;
+  .promo-code input {
+    width: calc(100% - 100px);
   }
 }

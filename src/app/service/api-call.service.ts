@@ -41,13 +41,28 @@ export class ApiCallService {
     return this.http.get<any>(`${this.productApiUrl}/${productId}`);
   }
 
+  getProductsByCategory(category: string): Observable<Product[]> {
+    const url = category ? `${this.productApiUrl}/category/${category}` : this.productApiUrl;
+    return this.http.get<Product[]>(url);
+  }
+
   getCart(userId: string): Observable<Cart> {
     return this.http.get<Cart>(`${this.cartApiUrl}/${userId}`);
   }
 
-  getCartItems(userId: string): Observable<CartItem[]> {
-    return this.http.get<CartItem[]>(`${this.cartApiUrl}/${userId}`);
+  // getCartItems(userId: string): Observable<CartItem[]> {
+  //   return this.http.get<CartItem[]>(`${this.cartApiUrl}/${userId}`);
+  // }
+  getCartItems(userId: string): Observable<any> {
+    return this.http.get<any>(`${this.cartApiUrl}/${userId}`).pipe(
+      tap((cart) => console.log('API Response for Cart:', cart)), // Log entire response to check structure
+      catchError((error) => {
+        console.error('Error fetching cart items:', error);
+        return throwError(error);
+      })
+    );
   }
+  
   addToCart(userId: string, productId: string, quantity: number): Observable<Cart> {
     return this.http.post<Cart>(`${this.cartApiUrl}/${userId}/cart/${productId}?quantity=${quantity}`, { userId, productId, quantity });
   }
@@ -82,4 +97,5 @@ export class ApiCallService {
   checkout(orderData: any): Observable<Order> {
     return this.http.post<Order>(`${this.checkoutApiUrl}/Checkout`, orderData);
   }
+  
 }

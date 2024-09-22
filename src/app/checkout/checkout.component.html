@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="checkout-container">
     <h2>Checkout</h2>
     <form (ngSubmit)="onSubmitCheckout()">
@@ -35,10 +36,13 @@
       </div>
   
       <div class="total-summary">
-        <p><strong>Total Amount:</strong> {{ totalAmount | currency }}</p>
+        <p><strong>Total Amount:</strong> ${{ calculateTotalPriceAfterDiscount() }}</p>
       </div>
   
       <button type="submit" class="btn btn-primary">Proceed to Checkout</button>
     </form>
   </div>
-  
+  <!-- Success message -->
+<div *ngIf="showMessage" class="success-message">
+  Product Ordered Successfully
+</div>

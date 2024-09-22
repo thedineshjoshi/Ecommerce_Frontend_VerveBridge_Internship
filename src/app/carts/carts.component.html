@@ -1,28 +1,48 @@
 <app-header></app-header>
+
 <div class="cart-container">
-  <h1>Your Cart</h1>
-  <div *ngIf="cartItems.length > 0; else emptyCart">
-    <div class="cart-item" *ngFor="let item of cartItems">
-      <img [src]="item.imageUrl" alt="Image Url" class="product-image">
-      <div class="item-details">
-        <h2>{{item.productName}}</h2>
-        <p>Product ID: {{item.productId}}</p>
-        <p class="price">Price: ${{item.unitPrice}}</p>
+  <h1 class="cart-title">My Cart</h1>
+  <div class="cart-content">
+    <div *ngIf="cartItems.length > 0; else emptyCart" class="cart-items-section">
+      <div class="cart-item" *ngFor="let item of cartItems">
+        <img [src]="item.imageUrl" alt="Image Url" class="product-image">
+        <div class="item-details">
+          <h2 class="product-name">{{item.productName}}</h2>
+          <p class="in-stock">In Stock</p>
 
-        <div class="quantity-controls">
-          <button (click)="updateQuantity(item.productId, item.quantity - 1)" [disabled]="item.quantity <= 1">-</button>
-          <input type="number" [(ngModel)]="item.quantity" (change)="onQuantityChange(item)" class="quantity-input"/>
-          <button (click)="updateQuantity(item.productId, item.quantity + 1)">+</button>
+          <div class="quantity-controls">
+            <button (click)="updateQuantity(item.productId, item.quantity - 1)" [disabled]="item.quantity <= 1">-</button>
+            <input type="number" [(ngModel)]="item.quantity" (change)="onQuantityChange(item)" class="quantity-input"/>
+            <button (click)="updateQuantity(item.productId, item.quantity + 1)">+</button>
+          </div>
+
+          <p class="price">Each: ${{item.unitPrice}}</p>
+          <p class="total-price">Total: {{(item.unitPrice - (item.unitPrice * item.discountApplied / 100)) * item.quantity | currency}}</p>
+
+          <div class="item-actions">
+            <button class="action-link" (click)="removeItem(item.productId)">Remove</button>
+            <button class="action-link">Move to Wishlist</button>
+            <button class="action-link">Save for Later</button>
+          </div>
         </div>
-
-        <p class="subtotal">Subtotal: ${{item.unitPrice * item.quantity}}</p>
-        <button (click)="removeItem(item.productId)" class="remove-btn">Remove</button>
       </div>
     </div>
 
-    <div class="cart-summary">
-      <h3>Total Price: ${{calculateTotalPrice()}}</h3>
-      <button routerLink="/checkout" class="checkout-btn" [disabled]="cartItems.length === 0">Proceed to Checkout</button>
+    <div class="cart-summary-section">
+      <h3>Order Summary</h3>
+      <div class="promo-code">
+        <input type="text" placeholder="Promo Code">
+        <button class="submit-btn">Submit</button>
+      </div>
+
+      <div class="pricing-details">
+        <p>Shipping: <span>TBD</span></p>
+        <p>Discount: <span>${{calculateDiscountedPrice()}}</span></p>
+        <p>Tax: <span>TBD</span></p>
+        <p class="estimated-total">Estimated Total: <span>${{calculateTotalPriceAfterDiscount()}}</span></p>
+      </div>
+
+      <button routerLink="/checkout" class="checkout-btn" [disabled]="cartItems.length === 0">Checkout</button>
     </div>
   </div>
 

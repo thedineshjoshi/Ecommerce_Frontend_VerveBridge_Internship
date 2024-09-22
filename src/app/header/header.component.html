@@ -1,20 +1,19 @@
 <header>
-    <div class="logo">
-      <a href="/">MyShop</a>
-    </div>
-    <nav class="navbar">
-      <ul>
-        <li><a routerLink="">Home</a></li>
-        <li><a href="#">Deals</a></li>
-        <li><a href="#">Contact</a></li>
-        <li *ngIf="!isLoggedIn"><a routerLink="/login" class="login-button">Login</a></li>
-      </ul>
-    </nav>
-    <div class="search-cart-profile">
-      <input type="text" placeholder="Search products">
-      <a routerLink="/carts" class="cart">Cart</a>
-      <a routerLink="/profile" class="profile">Profile</a>
-      <li *ngIf="isLoggedIn"><a (click)="logout()" class="login-button">Logout</a></li>
-    </div>
-  </header>
-  
+  <div class="logo">
+    <a href="/">MyShop</a>
+  </div>
+  <nav class="navbar">
+    <ul>
+      <li><a routerLink=""><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="#"><i class="fas fa-tags"></i> Deals</a></li>
+      <li><a href="#"><i class="fas fa-phone"></i> Contact</a></li>
+      <li *ngIf="!isLoggedIn"><a routerLink="/login" class="login-button"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+    </ul>
+  </nav>
+  <div class="search-cart-profile">
+    <input type="text" placeholder="Search products">
+    <a routerLink="/carts" class="cart"><i class="fas fa-shopping-cart"></i> Cart</a>
+    <a routerLink="/profile" class="profile"><i class="fas fa-user"></i> Profile</a>
+    <li *ngIf="isLoggedIn"><a (click)="logout()" class="login-button"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+  </div>
+</header>

@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { ApiCallService } from '../service/api-call.service';
 import { CommonModule } from '@angular/common';
-import { Subscription } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CartItem } from '../Model/CartItem.Model';
 import { AuthService } from '../service/auth.service';
 import { HeaderComponent } from '../header/header.component';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { Cart } from '../Model/Cart.Model';
 
 @Component({
   selector: 'app-carts',
@@ -19,6 +18,7 @@ import { RouterLink } from '@angular/router';
 export class CartsComponent {
   cartItems: CartItem[] = [];
   totalPrice: number = 0;
+  cart:Cart[]=[];
   constructor(private cartService: ApiCallService, private authservice:AuthService) {}
   ngOnInit(): void {
     this.loadCart();
@@ -57,7 +57,7 @@ updateCartItem(productId: string, quantity: number) {
   this.cartService.updateCartItem(this.authservice.decodeToken().UserId, productId, quantity).subscribe(
     (response) => {
       console.log('Cart item updated:', response);
-      this.loadCart(); // Reload the cart after updating the item
+      this.loadCart();
     },
     (error) => {
       console.error('Error updating cart item:', error);
@@ -67,7 +67,7 @@ updateCartItem(productId: string, quantity: number) {
 
 onQuantityChange(item: CartItem): void {
   if (item.quantity < 1) {
-    item.quantity = 1; // Prevent quantity going below 1
+    item.quantity = 1; 
   }
   this.updateQuantity(item.productId, item.quantity);
 }
@@ -82,20 +82,26 @@ removeProductFromCart(productId: string) {
   this.cartService.removeFromCart(this.authservice.decodeToken().UserId, productId).subscribe(
     (response) => {
       console.log('Product removed from cart:', response);
-      this.loadCart(); // Reload the cart after removing the product
+      this.loadCart(); 
     },
     (error) => {
       console.error('Error removing product from cart:', error);
     }
   );
 }
-calculateTotalPrice(): number {
-  return this.cartItems.reduce((total, item) => total + item.unitPrice * item.quantity, 0);
-}
+calculateTotalPriceAfterDiscount(): number {
+  return this.cartItems.reduce((total, item) => {
+    const discountedPrice = item.unitPrice - (item.unitPrice * item.discountApplied / 100);
+    return total + discountedPrice * item.quantity;
+  }, 0);}
+  calculateDiscountedPrice(): number {
+    return this.cartItems.reduce((total, item) => {
+      const discountedPrice = item.unitPrice - (item.unitPrice * item.discountApplied / 100);
+      return discountedPrice;
+    }, 0);}
+  
 
-// Proceed to checkout
 checkout(): void {
-  // Implement the checkout functionality here
   alert('Proceeding to checkout!');
 }
 }

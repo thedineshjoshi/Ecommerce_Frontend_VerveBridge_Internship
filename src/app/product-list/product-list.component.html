@@ -1,20 +1,44 @@
-<h3 class="product-name">Just For You</h3>
-<div class="productlist">
-  <div class="products">
+<!-- <div class="productlist">
+  <div class="products-grid">
     <div *ngFor="let productItem of recentProducts" class="product-card">
       <img [src]="productItem.imageUrl" alt="Product Image" class="product-image">
       <h3 class="product-name">{{ productItem.name }}</h3>
-      <h3 class="category">{{productItem.category}}</h3>
+      <div class="category">{{ productItem.category }}</div>
       <p class="product-price">{{ productItem.price | currency }}</p>
       <div class="product-discount" *ngIf="productItem.discount > 0">
         <span>{{ productItem.discount }}% OFF</span>
       </div>
-      <label for="quantity">Quantity:</label>
-      <input type="number" [(ngModel)]="quantity" min="1" />
+      <div class="quantity-section">
+        <label for="quantity">Quantity:</label>
+        <input type="number" [(ngModel)]="quantity" min="1" class="quantity-input" />
+      </div>
       <button (click)="addToCart(productItem.id, quantity)" class="add-to-cart-btn">Add to Cart</button>
     </div>
   </div>
 </div>
+
+<!-- <div *ngIf="showMessage" class="success-message">
+  Product Added to Cart Successfully
+</div> -->
+<div class="productlist">
+  <div class="products-grid">
+    <div *ngFor="let productItem of filteredProducts" class="product-card">
+      <img [src]="productItem.imageUrl" alt="Product Image" class="product-image">
+      <h3 class="product-name">{{ productItem.name }}</h3>
+      <div class="category">{{ productItem.category }}</div>
+      <p class="product-price">{{ productItem.price | currency }}</p>
+      <div class="product-discount" *ngIf="productItem.discount > 0">
+        <span>{{ productItem.discount }}% OFF</span>
+      </div>
+      <div class="quantity-section">
+        <label for="quantity">Quantity:</label>
+        <input type="number" [(ngModel)]="quantity" min="1" class="quantity-input" />
+      </div>
+      <button (click)="addToCart(productItem.id, quantity)" class="add-to-cart-btn">Add to Cart</button>
+    </div>
+  </div>
+</div>
+
 <!-- Success message -->
 <div *ngIf="showMessage" class="success-message">
   Product Added to Cart Successfully
